@@ -1,0 +1,224 @@
+.dialer-container {
+    max-width: 300px;
+    margin: auto;
+    background: #000000;
+    border-radius: 20px;
+    padding: 20px;
+}
+.dialing-container {
+    max-width: 300px;
+    margin: auto;
+    background: #6c757d;
+    border-radius: 20px;
+    padding: 20px;
+    min-height: 80vh;
+    position: relative;
+}
+.recent-container {
+    max-width: 300px;
+    margin: auto;
+    background: #000000;
+    border-radius: 20px;
+    padding: 20px;
+    min-height: 80vh;
+}
+.key {
+    width: 90%;
+    height: 60px;
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+    background: #393939;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    line-height: 0.75;
+    margin-left: 6px;
+}
+.marginFooter {
+    margin-top: 120px;
+}
+.btn-secondary:focus {
+    color: #fff;
+    background-color: #393939;
+    border-color: #000000;
+    box-shadow: none;
+}
+.btn-secondary:not(:disabled):not(.disabled):active,
+.show > .btn-secondary.dropdown-toggle {
+    color: #393939;
+    background-color: #393939;
+    border-color: #000000;
+}
+.btn-secondary:not(:disabled):not(.disabled).active:focus,
+.btn-secondary:not(:disabled):not(.disabled):active:focus,
+.show > .btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5);
+}
+.screen {
+    padding: 10px;
+    background: #000000;
+    min-height: 100px;
+    color: #ffffff;
+    h6 {
+        color: #007bff;
+    }
+}
+
+.key span {
+    font-size: 10px;
+    color: #ffffff;
+}
+
+.action-buttons .call-button {
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: #34c759;
+}
+
+.action-buttons .clear-button {
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #393939;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: black;
+}
+
+.footer-icon {
+    background-color: #000000;
+    border: none;
+    color: #393939;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.btn-secondary:not(:disabled):not(.disabled).active,
+.btn-secondary:not(:disabled):not(.disabled):active,
+.show > .btn-secondary.dropdown-toggle {
+    color: #007bff;
+    background-color: #000000;
+    border-color: #000000;
+}
+
+.footer-icon p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.call-screen {
+    p {
+        color: #ffffff;
+        margin-bottom: 10px;
+    }
+    h4 {
+        color: #ffffff;
+    }
+}
+
+.icon-section i {
+    color: #ffffff;
+    cursor: pointer;
+}
+.callKeys {
+    width: 90%;
+    height: 60px;
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+    background: #393939;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    line-height: 0.75;
+    margin-left: 6px;
+}
+.callKeys1 {
+    width: 90%;
+    height: 60px;
+    font-size: 24px;
+    color: #ffffff;
+    text-align: center;
+    background: #f12c2c;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    line-height: 0.75;
+    margin-left: 6px;
+}
+.btn-secondary:not(:disabled):not(.disabled):active:focus,
+.show > .btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5);
+}
+.btn-secondary:not(:disabled):not(.disabled):active,
+.show > .btn-secondary.dropdown-toggle {
+    color: #007bff;
+    background-color: #000000;
+    border-color: #000000;
+}
+button[disabled] {
+    background-color: #393939 !important;
+    color: #ffffff;
+    pointer-events: none;
+    opacity: 1;
+}
+.callKeys.active {
+    background-color: #000000;
+    color: white;
+}
+.info-icon {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: white;
+    font-size: 1rem;
+    cursor: default;
+}
+.edit-button {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: not-allowed;
+    font-size: 16px;
+}
+
+.tabs-container {
+    display: flex;
+}
+
+.tab {
+    background-color: black;
+    border: black;
+    font-size: 16px;
+    color: #ffffff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.tab.active {
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #393939;
+}
+
+.call-description {
+    font-size: 12px;
+}
+.call-time {
+    font-size: 12px;
+}
