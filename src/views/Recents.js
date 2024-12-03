@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
 import Footer from "../components/Footer";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,8 +6,9 @@ import { deleteCall } from "../store/actions/dialerAction";
 
 function Recents() {
     const callHistory = useSelector((state) => state.dailer.callHistory);
-    console.log(callHistory);
     const dispatch = useDispatch();
+
+    const [activeTab, setActiveTab] = useState("missed");
 
     const handleDelete = (id) => {
         dispatch(deleteCall(id));
@@ -20,8 +21,18 @@ function Recents() {
             </div>
 
             <div className="tabs-container d-flex justify-content-center mt-2">
-                <button className="tab active">All</button>
-                <button className="tab">Missed</button>
+                <button
+                    className={`tab ${activeTab === "all" ? "active" : ""}`}
+                    onClick={() => setActiveTab("all")}
+                >
+                    All
+                </button>
+                <button
+                    className={`tab ${activeTab === "missed" ? "active" : ""}`}
+                    onClick={() => setActiveTab("missed")}
+                >
+                    Missed
+                </button>
             </div>
 
             <div className="w-100 d-flex justify-content-start px-3 mt-2 text-white">
