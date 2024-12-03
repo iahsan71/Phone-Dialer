@@ -22,6 +22,12 @@
     padding: 20px;
     min-height: 80vh;
 }
+.call-history {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+}
 .key {
     width: 90%;
     height: 60px;
@@ -36,9 +42,7 @@
     line-height: 0.75;
     margin-left: 6px;
 }
-.marginFooter {
-    margin-top: 120px;
-}
+
 .btn-secondary:focus {
     color: #fff;
     background-color: #393939;

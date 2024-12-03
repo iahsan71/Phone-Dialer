@@ -13,7 +13,7 @@ const dialerReducer = (state = initialState, action) => {
         case "ADD_CALL":
             return {
                 ...state,
-                callHistory: [action.payload, ...state.callHistory],
+                callHistory: [...state.callHistory, action.payload],
             };
         case "DELETE_CALL":
             return {

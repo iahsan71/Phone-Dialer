@@ -10,7 +10,7 @@ function Footer() {
         setActiveTab(tab);
         if (tab == "Recents") {
             history.push("/recents");
-            setActiveTab(tab);
+            // setActiveTab(tab);
         } else if (tab == "Keypad") {
             history.push("/");
         }

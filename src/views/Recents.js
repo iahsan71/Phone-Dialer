@@ -6,6 +6,7 @@ import { deleteCall } from "../store/actions/dialerAction";
 
 function Recents() {
     const callHistory = useSelector((state) => state.dailer.callHistory);
+    console.log(callHistory);
     const dispatch = useDispatch();
 
     const handleDelete = (id) => {
@@ -13,7 +14,7 @@ function Recents() {
     };
 
     return (
-        <Container className="recent-container d-flex flex-column justify-content-start align-items-center mt-5">
+        <Container className="recent-container d-flex flex-column min-vh-80 mt-4">
             <div className="w-100 d-flex justify-content-start px-3">
                 <h6 className="edit-button">Edit</h6>
             </div>
@@ -27,7 +28,7 @@ function Recents() {
                 <h5>Recents</h5>
             </div>
 
-            <div className="call-history mt-3 w-100">
+            <div className="call-history flex-grow-1 overflow-auto mt-3 w-100">
                 {callHistory.length === 0 ? (
                     <p className="text-center text-muted">No recent calls</p>
                 ) : (
@@ -57,7 +58,8 @@ function Recents() {
                     ))
                 )}
             </div>
-            <div className="marginFooter">
+
+            <div className="mt-auto">
                 <Footer />
             </div>
         </Container>

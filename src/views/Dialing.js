@@ -25,9 +25,10 @@ function Dialing({ dialedNumber }) {
     };
 
     useEffect(() => {
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
             endCall();
         }, 10000);
+        return () => clearTimeout(timeoutId);
     }, []);
 
     return (
