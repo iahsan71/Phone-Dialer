@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Button, Spinner } from "reactstrap";
+import { Container, Button, Spinner } from "reactstrap";
 import Footer from "../components/Footer";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteCall, fetchCalls } from "../store/actions/dialerAction";
