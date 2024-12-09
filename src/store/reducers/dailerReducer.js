@@ -1,6 +1,7 @@
 const initialState = {
     dialedNumber: "",
     callHistory: [],
+    calls: [],
 };
 
 const dialerReducer = (state = initialState, action) => {
@@ -18,9 +19,13 @@ const dialerReducer = (state = initialState, action) => {
         case "DELETE_CALL":
             return {
                 ...state,
-                callHistory: state.callHistory.filter(
-                    (call) => call.id !== action.payload
-                ),
+                calls: state.calls.filter((call) => call.id !== action.payload),
+            };
+        case "FETCH_CALLS":
+            // console.log(action.payload);
+            return {
+                ...state,
+                calls: action.payload,
             };
         default:
             return state;

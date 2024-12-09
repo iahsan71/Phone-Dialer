@@ -1,15 +1,18 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Button } from "reactstrap";
+import React, { useEffect, useState } from "react";
+import { Container, Row, Col, Button, Spinner } from "reactstrap";
 import Footer from "../components/Footer";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteCall } from "../store/actions/dialerAction";
+import { deleteCall, fetchCalls } from "../store/actions/dialerAction";
 
 function Recents() {
-    const callHistory = useSelector((state) => state.dailer.callHistory);
+    const callHistory = useSelector((state) => state.dailer.calls);
     const dispatch = useDispatch();
-
+    const [loading, setLoading] = useState(true);
     const [activeTab, setActiveTab] = useState("missed");
-
+    useEffect(() => {
+        dispatch(fetchCalls());
+        setLoading(false);
+    }, []);
     const handleDelete = (id) => {
         dispatch(deleteCall(id));
     };
@@ -40,7 +43,12 @@ function Recents() {
             </div>
 
             <div className="call-history flex-grow-1 overflow-auto mt-3 w-100">
-                {callHistory.length === 0 ? (
+                {loading ? (
+                    <div className="text-center">
+                        <Spinner color="primary" />
+                        <p className="text-muted mt-2">Loading calls...</p>
+                    </div>
+                ) : callHistory.length === 0 ? (
                     <p className="text-center text-muted">No recent calls</p>
                 ) : (
                     callHistory.map((call) => (
