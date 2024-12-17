@@ -1,6 +1,8 @@
 const initialState = {
     dialedNumber: "",
     calls: [],
+    lastDocument: "",
+    hasMoreDocument: true,
 };
 
 const dialerReducer = (state = initialState, action) => {
@@ -18,7 +20,16 @@ const dialerReducer = (state = initialState, action) => {
         case "FETCH_CALLS":
             return {
                 ...state,
-                calls: action.payload,
+                calls: action.payload.data,
+                lastDocument: action.payload.lastDocument,
+                hasMoreDocument: action.payload.hasMoreDocument,
+            };
+        case "FETCH_CALLS_MORE":
+            return {
+                ...state,
+                calls: [...state.calls, ...action.payload.data],
+                lastDocument: action.payload.lastDocument,
+                hasMoreDocument: action.payload.hasMoreDocument,
             };
         default:
             return state;

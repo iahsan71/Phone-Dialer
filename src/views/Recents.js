@@ -1,20 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { Container, Button, Spinner } from "reactstrap";
+import { Container, Button, Spinner, Row, Col } from "reactstrap";
 import Footer from "../components/Footer";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteCall, fetchCalls } from "../store/actions/dialerAction";
 
 function Recents() {
-    const callHistory = useSelector((state) => state.dailer.calls);
+    const { calls, lastDocument, hasMoreDocument } = useSelector(
+        (state) => state.dailer
+    );
+    console.log(calls, lastDocument, hasMoreDocument);
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+
     const [activeTab, setActiveTab] = useState("missed");
     useEffect(() => {
-        dispatch(fetchCalls());
-        setLoading(false);
+        setLoading(true);
+        dispatch(
+            fetchCalls("", () => {
+                setLoading(false);
+            })
+        );
     }, []);
     const handleDelete = (id) => {
         dispatch(deleteCall(id));
+    };
+    const loadMore = () => {
+        setIsLoading(true);
+        dispatch(
+            fetchCalls(lastDocument, () => {
+                setIsLoading(false);
+            })
+        );
     };
 
     return (
@@ -46,36 +63,48 @@ function Recents() {
                 {loading ? (
                     <div className="text-center">
                         <Spinner color="primary" />
-                        <p className="text-muted mt-2">Loading calls...</p>
                     </div>
-                ) : callHistory.length === 0 ? (
+                ) : calls.length === 0 ? (
                     <p className="text-center text-muted">No recent calls</p>
                 ) : (
-                    callHistory.map((call) => (
-                        <div
-                            key={call.id}
-                            className="call-card d-flex justify-content-between align-items-center px-3 py-2 my-2"
-                        >
-                            <div className="call-info">
-                                <h6 className="call-number mb-1 text-danger">
-                                    {call.number}
-                                </h6>
-                                <p className="call-description mb-0 text-white">
-                                    Phone audio call
-                                </p>
-                            </div>
-                            <p className="call-time mb-3 text-muted">
-                                {call.time}
-                            </p>
-                            <Button
-                                className="delete-button text-danger bg-dark border-dark"
-                                onClick={() => handleDelete(call.id)}
+                    calls.map((call) => (
+                        <>
+                            <div
+                                key={call.id}
+                                className="call-card d-flex justify-content-between align-items-center px-3 py-2 my-2"
                             >
-                                <i className="fa-solid fa-trash"></i>
-                            </Button>
-                        </div>
+                                <div className="call-info">
+                                    <h6 className="call-number mb-1 text-danger">
+                                        {call.number}
+                                    </h6>
+                                    <p className="call-description mb-0 text-white">
+                                        Phone audio call
+                                    </p>
+                                </div>
+                                <p className="call-time mb-3 text-muted">
+                                    {call.time}
+                                </p>
+                                <Button
+                                    className="delete-button text-danger bg-dark border-dark"
+                                    onClick={() => handleDelete(call.id)}
+                                >
+                                    <i className="fa-solid fa-trash"></i>
+                                </Button>
+                            </div>
+                        </>
                     ))
                 )}
+                <div className="d-flex justify-content-center mt-3 mb-3">
+                    <Button
+                        color="primary"
+                        size="sm"
+                        className="outline-none"
+                        disabled={!hasMoreDocument}
+                        onClick={() => loadMore()}
+                    >
+                        {isLoading ? <Spinner size="sm" /> : "Load More"}
+                    </Button>
+                </div>
             </div>
 
             <div className="mt-auto">

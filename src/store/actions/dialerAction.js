@@ -16,21 +16,41 @@ export const addCall = (call) => async (dispatch) => {
     }
 };
 
-export const fetchCalls = () => async (dispatch) => {
-    try {
-        const query = await firebase.firestore().collection("calls").get();
-        let tempData = [];
-        query.forEach((doc) => {
-            tempData.push({ ...doc.data(), id: doc.id });
-        });
-        dispatch({
-            type: "FETCH_CALLS",
-            payload: tempData,
-        });
-    } catch (error) {
-        console.error("Error fetching calls:", error);
-    }
-};
+export const fetchCalls =
+    (lastDocument = null, onComplete = () => {}) =>
+    async (dispatch) => {
+        try {
+            let query = firebase
+                .firestore()
+                .collection("calls")
+                .orderBy("time");
+
+            if (lastDocument) {
+                query = query.startAfter(lastDocument);
+            }
+
+            const document = await query.limit(2).get();
+
+            let tempData = [];
+            document.forEach((doc) => {
+                tempData.push({ ...doc.data(), id: doc.id });
+            });
+
+            dispatch({
+                type: lastDocument ? "FETCH_CALLS_MORE" : "FETCH_CALLS",
+                payload: {
+                    data: tempData,
+                    lastDocument: document.docs[tempData.length - 1],
+                    hasMoreDocument: tempData.length >= 2,
+                },
+            });
+
+            onComplete(); // Stop loading
+        } catch (error) {
+            console.error("Error fetching calls:", error);
+            onComplete();
+        }
+    };
 
 export const deleteCall = (id) => async (dispatch) => {
     try {
